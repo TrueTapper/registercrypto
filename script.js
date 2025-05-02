@@ -64,16 +64,19 @@ function spin() {
   strip.style.transition = "none";
   strip.style.transform = `translateX(0px)`;
 
-  setTimeout(() => {
-    strip.style.transition = "transform 5s ease-out";
-    const offset = centerIndex * blockWidth - blockWidth;
-    strip.style.transform = `translateX(-${offset}px)`;
-    resultEl.textContent = "Вы выиграли: " + prize.name;
- // ⬇️ запускаем конфети через 5 секунд — когда прокрутка завершена
-  setTimeout(() => {
-    startImageConfetti();
-  }, 5000);
-  }, 50);
+setTimeout(() => {
+  strip.style.transition = "transform 5s ease-out";
+  const offset = centerIndex * blockWidth - blockWidth;
+  strip.style.transform = `translateX(-${offset}px)`;
+
+// Показать результат и конфети после завершения анимации (через 5 секунд)
+setTimeout(() => {
+  resultEl.textContent = "Вы выиграли: " + prize.name;
+  startImageConfetti();
+  showGiftPopup(); // ← Добавляем сюда
+}, 5000);
+}, 50);
+
 }
 
 // ... уже есть код выше
@@ -104,6 +107,16 @@ const confettiImages = [
   "https://i.imgur.com/I1ecqoS.png",
   "https://i.imgur.com/FIgzXYN.png"
 ];
+function showGiftPopup() {
+  popup.classList.remove("hidden");
+  popup.classList.add("popup-animate");
+
+  setTimeout(() => {
+    popup.classList.add("hidden");
+    popup.classList.remove("popup-animate");
+  }, 4600); // чуть больше чем анимация
+}
+
 
 function startImageConfetti() {
   const duration = 3000;
@@ -134,4 +147,3 @@ function startImageConfetti() {
     setTimeout(() => confetti.remove(), 6000);
   }, 50);
 }
-
