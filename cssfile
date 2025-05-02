@@ -1,0 +1,126 @@
+body {
+  background: url("https://i.imgur.com/NowYpXb.png") no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+.slot-banner {
+  margin: 50px auto;
+  width: 800px;
+  text-align: center;
+}
+
+.slot-banner img {
+  width: 60%;
+  max-width: 60%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.scroll-container {
+  position: relative;
+  width: 330px;
+  margin: 0 auto;
+}
+
+/* КОРПУС НА ЗАДНИЙ ПЛАН */
+
+
+
+/* ОБЁРТКА С СКРОЛЛОМ */
+.scroll-wrapper {
+  position: relative;
+  width: 330px;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 20px 0;
+  z-index: 2; /* Над корпусом */
+}
+
+.strip {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.strip img {
+  width: 100px;
+  height: 100px;
+  margin: 0 5px;
+  flex-shrink: 0;
+}
+
+/* ПОДСВЕТКА */
+.highlight-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  border: 3px solid #e000ff;
+  border-radius: 16px;
+  box-shadow: 0 0 12px #e000ff, 0 0 24px #e000ff66;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.strip {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.strip img {
+  width: 100px;
+  height: 100px;
+  margin: 0 5px;
+  flex-shrink: 0;
+}
+.scroll-bg {
+  position: absolute;
+  top: -80px; /* поднимаем выше */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 545px; /* достаточно для 3 блоков по 110px + отступы */
+  height: 295px; /* увеличиваем высоту */
+  background: url("https://i.imgur.com/KO95Xvm.png") no-repeat center center;
+  background-size: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+.highlight-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  border: 3px solid #e000ff;
+  border-radius: 16px;
+  box-shadow: 0 0 12px #e000ff, 0 0 24px #e000ff66;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.controls {
+  margin-top: 80px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid #00f0ff;
+  margin-right: 10px;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #00f0ff
