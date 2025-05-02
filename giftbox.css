@@ -1,0 +1,53 @@
+.popup {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.popup img {
+  width: 200px;
+  height: auto;
+  animation: pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px #e000ff) drop-shadow(0 0 20px #00f0ff);
+}
+@keyframes giftPopup {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+}
+
+
+.popup-animate {
+  animation: giftPopup 4.5s ease-in-out forwards;
+}
