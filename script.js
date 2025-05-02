@@ -69,6 +69,10 @@ function spin() {
     const offset = centerIndex * blockWidth - blockWidth;
     strip.style.transform = `translateX(-${offset}px)`;
     resultEl.textContent = "Вы выиграли: " + prize.name;
+ // ⬇️ запускаем конфети через 5 секунд — когда прокрутка завершена
+  setTimeout(() => {
+    startImageConfetti();
+  }, 5000);
   }, 50);
 }
 
@@ -92,3 +96,42 @@ document.getElementById("codeInput").addEventListener("input", () => {
 
 // ⬇️ ЭТО НУЖНО ДОБАВИТЬ
 document.getElementById("spinBtn").addEventListener("click", spin);
+const confettiImages = [
+  "https://i.imgur.com/vnGTJqV.png",
+  "https://i.imgur.com/KLX0OV2.png",
+  "https://i.imgur.com/jTqu4cX.png",
+  "https://i.imgur.com/17F6bo4.png",
+  "https://i.imgur.com/I1ecqoS.png",
+  "https://i.imgur.com/FIgzXYN.png"
+];
+
+function startImageConfetti() {
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  const interval = setInterval(() => {
+    if (Date.now() > end) {
+      clearInterval(interval);
+      return;
+    }
+
+    const confetti = document.createElement("img");
+    confetti.src = confettiImages[Math.floor(Math.random() * confettiImages.length)];
+    confetti.className = "confetti-img";
+
+    // Центр выпадения: от 40% до 60% ширины экрана
+    confetti.style.left = 40 + Math.random() * 20 + "vw";
+
+    // Случайный эффект вращения
+    const types = ["spin-left", "spin-right", "swing"];
+    confetti.classList.add(types[Math.floor(Math.random() * types.length)]);
+
+    // Разная длительность падения
+    confetti.style.animationDuration = 3 + Math.random() * 2 + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 6000);
+  }, 50);
+}
+
