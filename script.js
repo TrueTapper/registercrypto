@@ -147,3 +147,4 @@ function startImageConfetti() {
     setTimeout(() => confetti.remove(), 6000);
   }, 50);
 }
+
