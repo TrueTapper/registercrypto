@@ -1,3 +1,4 @@
+
 const prizes = [
   { name: "50FS", img: "https://i.imgur.com/Rzr3g1x.png", weight: 2 },
   { name: "10FS", img: "https://i.imgur.com/27ConO3.png", weight: 3 },
@@ -51,3 +52,4 @@ function spin() {
 }
 
 document.getElementById("spinBtn").addEventListener("click", spin);
+
