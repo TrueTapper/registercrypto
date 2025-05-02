@@ -1,166 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Платежи</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f3f6fb;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    .container {
-      max-width: 700px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      gap: 10px;
-    }
-
-    .tab {
-      padding: 10px 20px;
-      border-radius: 10px;
-      background-color: #f3f3f3;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-    }
-
-    .tab.active {
-      background-color: #fff;
-      border: 1px solid #ccc;
-    }
-
-    h3 {
-      margin: 20px 0;
-    }
-
-    .payment-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .method {
-      display: flex;
-      align-items: center;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 12px;
-      font-weight: bold;
-      background: #fff;
-      cursor: pointer;
-    }
-
-    .method img {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-      object-fit: contain;
-    }
-
-    .slider-container {
-      overflow: hidden;
-      position: relative;
-      max-width: 100%;
-      margin-bottom: 30px;
-      border-radius: 20px;
-    }
-
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .slide {
-      min-width: 100%;
-    }
-
-    .slide img {
-      width: 100%;
-      border-radius: 20px;
-      clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
-    }
-
-    .slider-controls {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .slider-controls button {
-      margin: 0 5px;
-      padding: 5px 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Слот-машина</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
 
-    <!-- Слайдер -->
-    <div class="slider-container">
-      <div class="slider" id="slider">
-        <div class="slide">
-          <img src="https://ramen.cdn-pomadorro.com/media/n_thumbs/1228x400/quality/50/format/avif/663ba047990e339bfd73c3f5" alt="Слайд 1">
-        </div>
-        <div class="slide">
-          <img src="https://ramen.cdn-pomadorro.com/media/n_thumbs/1228x400/quality/50/format/avif/6630f519ed25952772262c59" alt="Слайд 2">
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button onclick="prevSlide()">←</button>
-        <button onclick="nextSlide()">→</button>
-      </div>
-    </div>
+  <!-- Баннер -->
+  <div class="slot-banner">
+    <img src="https://i.imgur.com/6QNIxQa.png" alt="Баннер" />
+  </div>
 
-    <!-- Вкладки -->
-    <div class="tabs">
-      <button class="tab active">Пополнить</button>
-      <button class="tab">Вывести</button>
-    </div>
-
-    <!-- Способы оплаты -->
-    <h3>Рекомендуемые способы оплаты</h3>
-    <div class="payment-methods">
-      <div class="method"><img src="https://cdn-icons-png.flaticon.com/512/349/349221.png" alt="">Сбербанк перевод на номер</div>
-      <div class="method"><img src="https://cdn-icons-png.flaticon.com/512/10080/10080937.png" alt="">Наличные</div>
-      <div class="method"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/SBP_logo.svg/1280px-SBP_logo.svg.png" alt="" style="width: 40px;">SBP</div>
-      <div class="method"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Visa_Logo.png/1200px-Visa_Logo.png" alt="" style="width: 40px;">Bank Card</div>
-      <div class="method"><img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="">TetherTRC20</div>
-      <div class="method"><img src="https://s2.coinmarketcap.com/static/img/coins/200x200/11419.png" alt="">Toncoin</div>
+  <!-- Скролл и корпус -->
+  <div class="scroll-container">
+    <div class="scroll-bg"></div> <!-- Фон корпуса -->
+    <div class="scroll-wrapper">
+      <div class="strip" id="strip"></div>
+      <div class="highlight-box"></div>
     </div>
   </div>
 
-  <script>
-    let currentSlide = 0;
-    const slider = document.getElementById('slider');
-    const totalSlides = document.querySelectorAll('.slide').length;
+  <!-- Кнопки и ввод -->
+  <div class="controls">
+    <input id="codeInput" placeholder="Введите код" />
+    <button id="spinBtn">Запустить</button>
+  </div>
 
-    function updateSlide() {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
+  <!-- Результат -->
+  <p id="result"></p>
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlide();
-    }
-
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateSlide();
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 
