@@ -1,8 +1,13 @@
+const validCodes = ["test001", "test002", "test003", "test004", "test005", "test006", "test007"];
+let codeActivated = false;
+
+// Блокируем кнопку запуска до активации
+document.getElementById("spinBtn").disabled = true;
 
 const prizes = [
-  { name: "50FS", img: "https://i.imgur.com/Rzr3g1x.png", weight: 2 },
-  { name: "10FS", img: "https://i.imgur.com/27ConO3.png", weight: 3 },
-  { name: "Lottery", img: "https://i.imgur.com/2Vvvg12.png", weight: 4 },
+  { name: "50FS", img: "https://i.imgur.com/Rzr3g1x.png", weight: 1 },
+  { name: "10FS", img: "https://i.imgur.com/27ConO3.png", weight: 2 },
+  { name: "Lottery", img: "https://i.imgur.com/2Vvvg12.png", weight: 6 },
   { name: "Airpods", img: "https://i.imgur.com/VDE2X6G.png", weight: 1 },
 ];
 
@@ -20,36 +25,71 @@ function getWeightedPrize() {
   return prizes[0];
 }
 
-function createStrip(prize) {
+function createStrip(prize, cycles = 5) {
   strip.innerHTML = "";
 
-  const total = 21; // нечетное число
-  const centerIndex = Math.floor(total / 2);
+  const visible = 21;
+  const centerIndex = Math.floor(visible / 2);
 
-  for (let i = 0; i < total; i++) {
-    const p = i === centerIndex ? prize : prizes[i % prizes.length];
+  const allItems = [];
+  const totalCopies = cycles * prizes.length + visible;
+
+  for (let i = 0; i < totalCopies; i++) {
+    const p = i === totalCopies - centerIndex - 1 ? prize : prizes[i % prizes.length];
     const img = document.createElement("img");
     img.src = p.img;
-    strip.appendChild(img);
+    allItems.push(img);
   }
 
-  return centerIndex;
+  allItems.forEach(img => strip.appendChild(img));
+
+  return totalCopies - centerIndex - 1; // целевой индекс
 }
 
+
 function spin() {
+  const input = document.getElementById("codeInput").value.trim();
+  const codeIndex = validCodes.indexOf(input);
+  if (!codeActivated || codeIndex === -1) return;
+
+  validCodes.splice(codeIndex, 1);
+  codeActivated = false;
+  document.getElementById("spinBtn").disabled = true;
+  document.getElementById("codeInput").value = "";
+
   const prize = getWeightedPrize();
-  const centerIndex = createStrip(prize);
+  const cycles = 5; // сколько оборотов
+  const centerIndex = createStrip(prize, cycles);
 
   strip.style.transition = "none";
   strip.style.transform = `translateX(0px)`;
 
   setTimeout(() => {
-    strip.style.transition = "transform 1s ease-out";
+    strip.style.transition = "transform 5s ease-out";
     const offset = centerIndex * blockWidth - blockWidth;
     strip.style.transform = `translateX(-${offset}px)`;
     resultEl.textContent = "Вы выиграли: " + prize.name;
   }, 50);
 }
 
+// ... уже есть код выше
+
+document.getElementById("codeInput").addEventListener("input", () => {
+  const input = document.getElementById("codeInput").value.trim();
+  const btn = document.getElementById("spinBtn");
+  const result = document.getElementById("result");
+
+  if (validCodes.includes(input)) {
+    codeActivated = true;
+    btn.disabled = false;
+    result.textContent = "Код активирован! Нажмите 'Запустить'";
+  } else {
+    codeActivated = false;
+    btn.disabled = true;
+    result.textContent = "";
+  }
+});
+
+// ⬇️ ЭТО НУЖНО ДОБАВИТЬ
 document.getElementById("spinBtn").addEventListener("click", spin);
 
