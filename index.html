@@ -1,29 +1,39 @@
-<!-- Баннер -->
-<div class="slot-banner">
-  <img src="https://i.imgur.com/6QNIxQa.png" alt="Баннер" />
-</div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Слот-машина</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<div class="scroll-container">
-  <div class="scroll-bg"></div> <!-- Перенесён сюда -->
-  <div class="scroll-wrapper">
-  <div class="strip" id="strip">
-    <img src="https://i.imgur.com/Rzr3g1x.png" alt="preview" />
-    <img src="https://i.imgur.com/VDE2X6G.png" alt="preview" />
-    <img src="https://i.imgur.com/2Vvvg12.png" alt="preview" />
+  <!-- Баннер -->
+  <div class="slot-banner">
+    <img src="https://i.imgur.com/6QNIxQa.png" alt="Баннер" />
   </div>
-  <div class="highlight-box"></div>
-</div>
 
-</div>
+  <div class="scroll-container">
+    <div class="scroll-bg"></div>
+    <div class="scroll-wrapper">
+      <div class="strip" id="strip">
+        <img src="https://i.imgur.com/Rzr3g1x.png" alt="preview" />
+        <img src="https://i.imgur.com/VDE2X6G.png" alt="preview" />
+        <img src="https://i.imgur.com/2Vvvg12.png" alt="preview" />
+      </div>
+      <div class="highlight-box"></div>
+    </div>
+  </div>
 
+  <!-- Кнопки и ввод -->
+  <div class="controls">
+    <input id="codeInput" placeholder="Введите код" />
+    <button id="spinBtn">Запустить</button>
+  </div>
 
-<!-- Кнопки и ввод -->
-<div class="controls">
-  <input id="codeInput" placeholder="Введите код" />
-  <button id="spinBtn">Запустить</button>
-</div>
+  <!-- Результат -->
+  <p id="result"></p>
 
-<!-- Результат -->
-<p id="result"></p>
-
-
+  <script src="script.js"></script>
+</body>
+</html>
