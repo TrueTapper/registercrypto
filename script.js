@@ -92,4 +92,3 @@ document.getElementById("codeInput").addEventListener("input", () => {
 
 // ⬇️ ЭТО НУЖНО ДОБАВИТЬ
 document.getElementById("spinBtn").addEventListener("click", spin);
-
